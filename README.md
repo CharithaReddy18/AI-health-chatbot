@@ -47,3 +47,14 @@ You can run this project locally or in Google Colab using `pyngrok` (see below f
 ├── README.md              # Project description and usage
 └── requirements.txt       # Required Python packages (optional)
 
+## 📝 License
+
+<div align="center">
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
+<br>
+This project is licensed under the terms of the <strong><a href="./LICENSE">MIT License</a></strong>. <br>
+You are free to use, modify, and distribute this project with proper attribution.
+
+</div>
