@@ -1,9 +1,10 @@
 import streamlit as st
 from transformers import pipeline
 import datetime
+from medical_agent import chatbot
 
 # Load a pre-trained Hugging Face model
-chatbot = pipeline("text-generation", model='distilgpt2')
+##chatbot = pipeline("text-generation", model='distilgpt2')
 
 # Health Information Library
 health_info = {
@@ -106,8 +107,8 @@ def healthcare_chatbot(user_input):
         return "Flu symptoms often include fever, cough, sore throat, and body aches. Rest and fluids are important. Antiviral drugs may be prescribed by a doctor."
     else:
         # Use the model to generate a response for general input
-        response = chatbot(user_input, max_length=100, num_return_sequences=1)
-        return response[0]['generated_text']
+        response = chatbot(user_input)
+        return response
 
 # Function to export chat history
 def export_chat_history(chat_history):
