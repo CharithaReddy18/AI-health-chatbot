@@ -5,6 +5,29 @@ from medical_agent import chatbot
 
 # Load a pre-trained Hugging Face model
 ##chatbot = pipeline("text-generation", model='distilgpt2')
+# 🌙 Dark Mode Toggle Setup
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = False
+
+# Sidebar toggle
+st.sidebar.title("🛠 Settings")
+st.session_state.dark_mode = st.sidebar.checkbox("🌙 Enable Dark Mode", value=st.session_state.dark_mode)
+
+# Inject CSS based on toggle
+if st.session_state.dark_mode:
+    st.markdown("""
+        <style>
+            body, .main { background-color: #121212; color: #e0e0e0; }
+            .stButton>button { background-color: #333; color: white; }
+            .stTextInput>div>div>input { background-color: #1e1e1e; color: white; }
+        </style>
+    """, unsafe_allow_html=True)
+else:
+    st.markdown("""
+        <style>
+            body, .main { background-color: #ffffff; color: #000000; }
+        </style>
+    """, unsafe_allow_html=True)
 
 # Health Information Library
 health_info = {
