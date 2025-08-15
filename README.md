@@ -42,6 +42,14 @@ In an increasingly connected world, access to immediate health guidance is cruci
 -   **Version Control:** Git & GitHub
 
 ---
+## Offline Mode Support
+If you do not have a `GROQ_API_KEY`, the chatbot now supports **offline mode** using `DistilGPT2` (a local HuggingFace model).  
+This allows you to test the chatbot without any API calls.
+
+No extra setup is required — just run:
+```bash
+python app.py
+
 
 ## 📂 Project Structure
 
