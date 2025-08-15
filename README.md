@@ -1,8 +1,8 @@
-# 🤖 Medibot: Your AI-Powered Health Assistant 🩺
+# 🤖 Medibot: AI Health Assistant 🩺
 
-An **AI-Powered Health Assistant** that provides users with **health-related guidance**, **symptom analysis**, and **basic medical recommendations** using advanced **Natural Language Processing (NLP)**.
+An **AI-Powered Health Assistant** that provides users with **health-related guidance**, **symptom analysis**, and **basic medical recommendations**.
 
-Built with **Streamlit** for the frontend and **Hugging Face Transformers** for intelligent responses, this chatbot aims to improve **accessibility to preliminary healthcare advice**, especially for individuals without immediate access to medical professionals.
+It uses **rule-based logic** and a **RAG** (Retrieval-Augmented Generation) pipeline powered by a Groq LLM. When rule based response fails , RAG fetches data from trusted medical databases to provide relevant answers for unhandled queries.
 
 > ⚠️ **Disclaimer:** This chatbot is **not a replacement** for professional medical advice. Always consult a qualified healthcare provider for serious or persistent health issues.
 
@@ -10,37 +10,39 @@ Built with **Streamlit** for the frontend and **Hugging Face Transformers** for 
 
 ## 💡 Overview
 
-In an increasingly connected world, access to immediate health guidance is crucial. **Medibot** bridges the gap between users and professional medical advice by providing a virtual health assistant that offers:
+**Medibot** bridges the gap between users and healthcare professionals by offering:
 
--   Understanding user queries about medical symptoms or health issues.
--   **Rule-based** recommendations for common medical questions.
--   **AI-powered, context-aware responses** for general health inquiries.
--   Assisting users with **appointment guidance**, **medication reminders**, and **basic symptom checks**.
-
+- Understanding of user health queries 
+- Symptom analysis with possible next steps
+- Rule-based responses for common health questions
+- AI-powered fallback responses using Groq 
+- Efficient medical data retrieval via FAISS-based database
+- A user-friendly Streamlit web interface
 ---
 
 ## 🚀 Features
 
--   💬 **Interactive NLP Chatbot** – Understands and responds to user health queries in natural language.
--   🧪 **Symptom Analysis** – Describe your symptoms, and the chatbot will provide possible next steps based on your input.
--   📅 **Appointment Guidance** – Helps in planning visits to doctors or medical centers.
--   💊 **Medication Reminders** – Assists users in remembering their prescribed medications.
--   🔁 **Fallback AI Mode** – Uses Hugging Face's `distilgpt2` to handle a wide range of general health questions, ensuring you get a helpful response even when a specific rule isn't found.
--   🖥️ **Streamlit Web App** – Easy-to-use, browser-accessible interface.
--   📜 **Chat History Storage** – Saves conversations for later reference.
--   🗄 **Medical Database Integration** – Stores and retrieves relevant medical data from FAISS indexes for efficient information retrieval.
+1. **Symptom Checker** - Check symptoms and answer health-related queries
+
+2. **Rule Based Response** - If keywords like "flu", "fever", or "appointment" are detected, it provides predefined answers.
+
+3. **RAG Fallback** - If no rule matches the chatbot retrieves relevant details from medical database to answer user query.
 
 ---
 
 ## 🧰 Tech Stack
 
--   **Programming Language:** Python 3
--   **Frontend:** [Streamlit](https://streamlit.io/) – For its simplicity and speed, allowing us to turn a Python script into a beautiful web app instantly.
--   **NLP Models:** [Hugging Face Transformers](https://huggingface.co/transformers/) (`distilgpt2`) – Leveraging pre-trained models gives us access to state-of-the-art NLP capabilities for intelligent, context-aware responses.
--   **Database:** FAISS (`index.faiss`, `index.pkl`) – For efficient similarity search and indexing of medical data.
--   **Utilities:** NLTK (optional in current version)
--   **Version Control:** Git & GitHub
+- **Streamlit** – Interactive web app framework for the chatbot UI
 
+- **Python** – Core programming language for backend logic
+
+- **LangChain** – Orchestration framework for building the RAG pipeline
+
+- **Groq API** – High-performance LLM used for natural language responses
+
+- **FAISS** – Vector database for fast similarity search in retrieved documents
+
+- **Hugging Face Transformers** – Embedding model for converting medical texts into vector representations
 ---
 
 ## 📂 Project Structure
@@ -81,54 +83,33 @@ cd AI-health-chatbot
 pip install -r requirements.txt
 ```
 
-**3️⃣ Run the Streamlit app**
+**3️⃣Set Environment Variables**
+```env
+GROQ_API_KEY=your_groq_api_key
+
+HUGGINGFACE_API_KEY=your_api_key
+
+```
+
+**4️⃣ Run the Streamlit app**
 ```bash
 streamlit run app.py
 ```
 
-**4️⃣ Access in your browser**
 
-The app will open in your default browser, typically at:
+## 🚀 Future Advancements
+- Multi-language Support – Enable chatbot to respond in multiple languages for broader accessibility.
 
-```plaintext
-http://localhost:8501
-```
+- Voice Input & Output – Add speech-to-text and text-to-speech for hands-free interaction.
 
-
-## 🎯How to use
-1. Open the app in your browser.
-
-2. Enter your health-related question in the chat input.
-
-3. The chatbot will provide rule-based suggestions for known queries or use AI-generated responses for more general or complex questions.
-
-4. Use features like medication reminders or appointment guidance as needed.
+- Conversational Memory - to  enable LLM remember previous interactions and maintain context over time.
 
 
-## 🛠 Roadmap
-- Integration with voice input & output for hands-free usage.
+## 🤝 Contributing
+We welcome contributions! Please refer to CONTRIBUTING.md and CODE_OF_CONDUCT.md for guidelines on how to get involved.
 
-- More advanced medical knowledge base with updated disease data.
-
-- Multilingual support for wider accessibility.
-
-- Secure storage and encryption of chat histories.
 
 ## 📝 License
 
 This project is licensed under the terms of the **MIT License.**
 
-You are free to use, modify, and distribute this project with proper attribution.
-
-
-## 🙏Acknowledgements
-
-- **Streamlit** – For providing a simple yet powerful way to create web-based interfaces.
-
-- **Hugging Face** – For their open-source NLP models and resources.
-
-- **FAISS** – For efficient similarity search and indexing.
-
-- **Python Community** – For the vast collection of libraries and open-source tools.
-
-- All contributors and testers who helped improve the project.
