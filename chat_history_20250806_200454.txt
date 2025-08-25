@@ -1,6 +1,0 @@
-User: I have fever
-Assistant: I understand you have a fever. How many days have you had it?
-User: 3
-Assistant: Are you experiencing any other symptoms, like a cough or sore throat?
-User: yes
-Assistant: Thank you. You've reported a fever for 3 with the following other symptoms: yes. Please consult a doctor for advice.
