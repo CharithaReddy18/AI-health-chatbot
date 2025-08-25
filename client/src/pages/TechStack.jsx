@@ -7,6 +7,17 @@ const GroqLogo = () => <svg viewBox="0 0 24 24" className="w-12 h-12 mx-auto tex
 const FaissLogo = () => <svg viewBox="0 0 24 24" className="w-12 h-12 mx-auto text-blue-600"><path fill="currentColor" d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>;
 const HuggingFaceLogo = () => <svg viewBox="0 0 24 24" className="w-12 h-12 mx-auto text-blue-600"><path fill="currentColor" d="M12 2.32c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm4.03 7.53c-.34-.34-.78-.53-1.26-.53H9.23c-.48 0-.92.19-1.26.53-.34.34-.53.78-.53 1.26v3.72c0 .97.79 1.76 1.76 1.76h.04c.4 0 .78-.13 1.08-.36l1.2-1.2v2.1c0 .41.34.75.75.75s.75-.34.75-.75v-2.1l1.2 1.2c.3.23.68.36 1.08.36h.04c.97 0 1.76-.79 1.76-1.76v-3.72c0-.48-.19-.92-.53-1.26z" /></svg>;
 const StreamlitLogo = () => <svg viewBox="0 0 24 24" className="w-12 h-12 mx-auto text-blue-600"><path fill="currentColor" d="M12 2L1 9l11 7 11-7L12 2zm0 11.31L3.93 9 12 4.69 20.07 9 12 13.31zM3.5 10.74L12 16.26l8.5-5.52v3.02L12 19.28l-8.5-5.52v-3.02z" /></svg>;
+const ReactLogo = () => (
+  <svg viewBox="0 0 24 24" className="w-12 h-12 mx-auto text-blue-600">
+    <path
+      fill="currentColor"
+      d="M12 10.2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM12 0c-1.05 0-2.07.09-3.05.27-1.58.29-2.95.86-3.97 1.64-.79.61-1.32 1.39-1.53 2.28-.18.73-.15 1.5.09 2.27.21.65.54 1.28.98 1.88-.44.6-.77 1.23-.98 1.88-.24.77-.27 1.54-.09 2.27.21.89.74 1.67 1.53 2.28 1.02.78 2.39 1.35 3.97 1.64.98.18 2 .27 3.05.27s2.07-.09 3.05-.27c1.58-.29 2.95-.86 3.97-1.64.79-.61 1.32-1.39 1.53-2.28.18-.73.15-1.5-.09-2.27-.21-.65-.54-1.28-.98-1.88.44-.6.77-1.23.98-1.88.24-.77.27-1.54.09-2.27-.21-.89-.74-1.67-1.53-2.28-1.02-.78-2.39-1.35-3.97-1.64C14.07.09 13.05 0 12 0zm0 2c.9 0 1.77.07 2.61.22 1.29.24 2.42.7 3.23 1.31.46.36.75.77.87 1.23.1.39.08.81-.05 1.26-.15.48-.43.97-.82 1.45-.39-.48-.87-.92-1.45-1.31C15.34 5.02 13.71 4.4 12 4.4c-1.71 0-3.34.62-4.39 1.77-.58.39-1.06.83-1.45 1.31-.39-.48-.67-.97-.82-1.45-.13-.45-.15-.87-.05-1.26.12-.46.41-.87.87-1.23.81-.61 1.94-1.07 3.23-1.31C10.23 2.07 11.1 2 12 2z"
+    />
+  </svg>
+);
+
+
+
 
 const TechCard = ({ logo, name, description }) => (
     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300">
@@ -19,7 +30,7 @@ const TechCard = ({ logo, name, description }) => (
 const TechStack = () => {
     const technologies = [
         { logo: <PythonLogo />, name: "Python", description: "The core programming language for all backend logic, data processing, and AI orchestration." },
-        { logo: <StreamlitLogo />, name: "Streamlit", description: "Powers the interactive and user-friendly web interface for the chatbot." },
+        { logo: <ReactLogo />, name: "React", description: "Powers the interactive and user-friendly web interface for the chatbot." },
         { logo: <LangChainLogo />, name: "LangChain", description: "The framework used to build and orchestrate the entire Retrieval-Augmented Generation (RAG) pipeline." },
         { logo: <GroqLogo />, name: "Groq", description: "The high-performance LLM used for generating fast and context-aware natural language responses." },
         { logo: <FaissLogo />, name: "FAISS", description: "A vector database from Meta AI, used for efficient similarity searches in our medical knowledge base." },
