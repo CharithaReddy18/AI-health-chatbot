@@ -1,130 +1,303 @@
-# Contributor Covenant Code of Conduct
+# 🏥 Code of Conduct
 
-## Our Pledge
+<div align="center">
 
-We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, religion, or sexual identity
-and orientation.
+[![Healthcare AI](https://img.shields.io/badge/Healthcare-AI%20Ethics-blue.svg)](https://github.com/CharithaReddy18/AI-health-chatbot)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+[![Medical Ethics](https://img.shields.io/badge/Medical-Ethics%20Compliant-green.svg)](code_of_conduct.md)
 
-We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.
+*Building a safe, inclusive, and medically responsible AI healthcare community*
 
-## Our Standards
+</div>
 
-Examples of behavior that contributes to a positive environment for our
-community include:
+---
 
-* Demonstrating empathy and kindness toward other people
-* Being respectful of differing opinions, viewpoints, and experiences
-* Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the
-  overall community
+## 🤝 Our Pledge
 
-Examples of unacceptable behavior include:
+We as members, contributors, and leaders pledge to make participation in our **MediBot AI Health Assistant** community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+We pledge to act and interact in ways that contribute to an **open, welcoming, diverse, inclusive, and healthy community** that prioritizes **patient safety**, **medical accuracy**, and **ethical healthcare AI development**.
 
-## Enforcement Responsibilities
+---
 
-Community leaders are responsible for clarifying and enforcing our standards of
-acceptable behavior and will take appropriate and fair corrective action in
-response to any behavior that they deem inappropriate, threatening, offensive,
-or harmful.
+## ✨ Our Standards
 
-Community leaders have the right and responsibility to remove, edit, or reject
-comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, and will communicate reasons for moderation
-decisions when appropriate.
+### 🌟 Positive Community Behavior
 
-## Scope
+Examples of behavior that contributes to a **positive environment** for our community include:
 
-This Code of Conduct applies within all community spaces, and also applies when
-an individual is officially representing the community in public spaces.
-Examples of representing our community include using an official e-mail address,
-posting via an official social media account, or acting as an appointed
-representative at an online or offline event.
+- 🤗 **Demonstrating empathy and kindness** toward other people, especially considering healthcare sensitivities
+- 🌍 **Being respectful** of differing opinions, viewpoints, and cultural approaches to health and medicine
+- 📝 **Giving and gracefully accepting constructive feedback** on medical accuracy and AI safety
+- 🙏 **Accepting responsibility and apologizing** to those affected by our mistakes, particularly when involving health information
+- 🎯 **Focusing on what is best** not just for us as individuals, but for the overall community and patient welfare
+- 🏥 **Maintaining professional standards** equivalent to healthcare industry practices
+- 🛡️ **Prioritizing patient safety** and well-being in all contributions
+- 📚 **Acknowledging limitations** when working outside one's area of expertise
+- 🌐 **Respecting cultural sensitivities** around health and medical practices globally
 
-## Enforcement
+### ❌ Unacceptable Behavior
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
+Examples of **unacceptable behavior** include:
 
-nayinicharithareddy18@gmail.com
+- 🚫 The use of sexualized language or imagery, and sexual attention or advances of any kind
+- 🎯 Trolling, insulting or derogatory comments, and personal or political attacks
+- 🕵️ Public or private harassment
+- 📋 Publishing others' private information, such as a physical or email address, without their explicit permission
+- ⚕️ **Providing personal medical advice or diagnosis** through any project communication channel
+- 🔒 **Sharing, discussing, or including real patient data** or personal health information
+- ❗ **Promoting medical misinformation** or unverified health claims
+- 🎭 **Misrepresenting qualifications or credentials** in medical contexts
+- 💼 Other conduct which could reasonably be considered inappropriate in a professional healthcare setting
 
-All complaints will be reviewed and investigated promptly and fairly.
+---
 
-All community leaders are obligated to respect the privacy and security of the
-reporter of any incident.
+## 🏥 Healthcare-Specific Standards
 
-## Enforcement Guidelines
+### 🧠 Medical Information and AI Ethics
 
-Community leaders will follow these Community Impact Guidelines in determining
-the consequences for any action they deem in violation of this Code of Conduct:
+Contributors to this healthcare AI project must adhere to the following principles:
 
-### 1. Correction
+<details>
+<summary><strong>📋 Medical Accuracy and Responsibility</strong></summary>
 
-**Community Impact**: Use of inappropriate language or other behavior deemed
-unprofessional or unwelcome in the community.
+- All health-related contributions must be based on **reliable, peer-reviewed sources**
+- Medical information must include **appropriate disclaimers** emphasizing the need for professional consultation
+- Contributors should **not provide personal medical advice** through the platform
+- All medical content must clearly state *"This is for informational purposes only and does not replace professional medical advice"*
 
-**Consequence**: A private, written warning from community leaders, providing
-clarity around the nature of the violation and an explanation of why the
-behavior was inappropriate. A public apology may be requested.
+</details>
 
-### 2. Warning
+<details>
+<summary><strong>🔐 Patient Privacy and Data Protection</strong></summary>
 
-**Community Impact**: A violation through a single incident or series
-of actions.
+- Strict adherence to **healthcare data privacy principles** (HIPAA-equivalent standards)
+- **No sharing of personal health information** in discussions, code examples, or documentation
+- All test data must be **synthetic, anonymized**, and clearly labeled as such
+- Contributors handling any health-related data must follow **privacy-by-design principles**
 
-**Consequence**: A warning with consequences for continued behavior. No
-interaction with the people involved, including unsolicited interaction with
-those enforcing the Code of Conduct, for a specified period of time. This
-includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or
-permanent ban.
+</details>
 
-### 3. Temporary Ban
+<details>
+<summary><strong>🤖 Ethical AI Development</strong></summary>
 
-**Community Impact**: A serious violation of community standards, including
-sustained inappropriate behavior.
+- AI contributions must **prioritize patient safety** and well-being above feature development
+- **Bias testing and fairness considerations** are mandatory for healthcare AI features
+- **Transparency in AI decision-making** processes and clear communication of limitations
+- **Responsible disclosure** of AI model limitations and potential risks to users
+- **Cultural competency considerations** in AI algorithm development
 
-**Consequence**: A temporary ban from any sort of interaction or public
-communication with the community for a specified period of time. No public or
-private interaction with the people involved, including unsolicited interaction
-with those enforcing the Code of Conduct, is allowed during this period.
-Violating these terms may lead to a permanent ban.
+</details>
 
-### 4. Permanent Ban
+<details>
+<summary><strong>👨‍⚕️ Professional Standards</strong></summary>
 
-**Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
-individual, or aggression toward or disparagement of classes of individuals.
+- Maintain **professional standards** equivalent to healthcare industry practices
+- **Acknowledge limitations** when contributing outside one's area of medical expertise
+- Prioritize **evidence-based approaches** over experimental or unproven methods
+- Respect **diverse global perspectives** on healthcare practices and cultural approaches to medicine
 
-**Consequence**: A permanent ban from any sort of public interaction within
-the community.
+</details>
 
-## Attribution
+---
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.0, available at
-https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
+## 🌐 Scope
 
-Community Impact Guidelines were inspired by [Mozilla's code of conduct
-enforcement ladder](https://github.com/mozilla/diversity).
+This Code of Conduct applies within **all community spaces**, including but not limited to:
 
-[homepage]: https://www.contributor-covenant.org
+| Platform | Coverage |
+|----------|----------|
+| 📂 **GitHub** | Repositories, issues, pull requests, discussions |
+| 💬 **Community Forums** | All project-related discussions |
+| 📱 **Social Media** | Official project representations |
+| 🎤 **Conferences** | Presentations or public demonstrations |
+| 📧 **Email** | Project-related communications |
+| 🏥 **Healthcare Data** | Any work with health data, AI models, or safety-impacting features |
 
-For answers to common questions about this code of conduct, see the FAQ at
-https://www.contributor-covenant.org/faq. Translations are available at
-https://www.contributor-covenant.org/translations.
+---
+
+## ⚖️ Enforcement Responsibilities
+
+Community leaders are responsible for **clarifying and enforcing** our standards of acceptable behavior and will take **appropriate and fair corrective action** in response to any behavior that they deem inappropriate, threatening, offensive, harmful, or potentially dangerous to patient safety.
+
+### 🚨 Healthcare-Specific Enforcement
+
+For issues involving:
+- 🩺 **Medical misinformation** or harmful health advice
+- 🔒 **Privacy breaches** involving health data
+- 🤖 **Ethical concerns** about AI medical recommendations
+- ⚠️ **Patient safety-related** code issues
+
+These will receive **⏰ expedited review within 24 hours** and may result in immediate temporary suspension pending investigation.
+
+---
+
+## 📞 Reporting Violations
+
+<div align="center">
+
+### 📧 Standard Violations
+**Email**: [nayinicharithareddy18@gmail.com](mailto:nayinicharithareddy18@gmail.com)
+
+### 🚨 Healthcare-Related Urgent Concerns
+**Subject**: `URGENT HEALTH CONCERN`  
+**Email**: [nayinicharithareddy18@gmail.com](mailto:nayinicharithareddy18@gmail.com)
+
+</div>
+
+> **🔒 Privacy Guarantee**: All complaints will be reviewed and investigated **promptly and fairly**. All community leaders are obligated to respect the **privacy and security** of the reporter of any incident.
+
+---
+
+## ⚖️ Enforcement Guidelines
+
+Community leaders will follow these **Community Impact Guidelines** in determining consequences:
+
+### 1️⃣ Correction
+**🎯 Community Impact**: Minor inappropriate language or unprofessional behavior
+
+**📋 Consequence**: Private written warning with clarification and explanation
+
+### 2️⃣ Warning  
+**🎯 Community Impact**: Single incident or series of violations
+
+**📋 Consequence**: Warning with interaction restrictions for specified period
+
+### 3️⃣ Temporary Ban
+**🎯 Community Impact**: Serious violations including privacy concerns or harmful medical advice
+
+**📋 Consequence**: Temporary ban from all community interaction
+
+### 4️⃣ Permanent Ban
+**🎯 Community Impact**: Pattern of violations, harassment, or safety violations
+
+**📋 Consequence**: Permanent ban from all public community interaction
+
+### 5️⃣ Immediate Suspension (Healthcare-Specific)
+**🎯 Community Impact**: Immediate patient safety risk or severe privacy violations
+
+**📋 Consequence**: Immediate suspension pending full investigation
+
+---
+
+## ⚠️ Medical Disclaimers and Legal Protection
+
+<div align="center">
+
+### 🏥 Project Disclaimer
+*This open-source project is developed for **educational and informational purposes only***
+
+</div>
+
+**Contributors acknowledge that**:
+- ❌ This platform does **not provide medical diagnosis, treatment, or professional medical advice**
+- ✅ All health-related features require **validation by qualified healthcare professionals** before clinical use
+- 🛡️ Contributors are **not liable** for medical decisions made by users based on this software
+- 👨‍⚕️ Users must **consult qualified healthcare providers** for all medical concerns
+- ⚠️ The AI system has **limitations** and may not be suitable for all medical contexts
+
+---
+
+## ♿ Accessibility and Inclusion
+
+We are committed to making healthcare information **accessible to all users**:
+
+- 📚 **Health Literacy**: Content understandable across different literacy levels
+- ♿ **Accessibility**: Features accessible to users with disabilities  
+- 🌍 **Cultural Diversity**: Linguistic diversity in health information presentation
+- 💰 **Economic Accessibility**: Considerations for healthcare feature affordability
+- 🤝 **Cultural Respect**: Different cultural approaches to health and medicine
+
+---
+
+## 🤖 Data Ethics and AI Governance
+
+### ⚖️ Algorithmic Fairness
+- 🧪 AI models must be **tested for bias** across different demographic groups
+- 🔍 **Regular auditing** of AI decisions for fairness and equity
+- 📊 **Transparency** in data sources and model training processes
+- 📖 **Clear documentation** of AI system limitations and appropriate use cases
+
+### 🔐 Data Governance
+- ✅ All data collection must have **clear consent mechanisms**
+- 📉 **Data minimization principles** - collect only necessary information
+- 🔒 **Secure data handling** and storage practices
+- 🛡️ **Regular security audits** and vulnerability assessments
+- 🗂️ **Clear data retention** and deletion policies
+
+---
+
+## 🔄 Continuous Improvement
+
+This Code of Conduct is a **living document** that will evolve with our community:
+
+- 📅 **Regular review and updates** based on community feedback
+- 🆕 **Incorporation of emerging best practices** in healthcare AI ethics
+- 👥 **Consultation with healthcare professionals** and ethics experts
+- 📢 **Transparency** in any changes or updates to these guidelines
+
+---
+
+## 📚 Resources and Education
+
+Contributors are encouraged to familiarize themselves with:
+
+| Resource | Description |
+|----------|-------------|
+| 🔒 **HIPAA/GDPR** | Healthcare data privacy regulations |
+| 🤖 **AI Ethics** | Frameworks for healthcare applications |
+| 📋 **Medical Standards** | Information accuracy and source verification |
+| 🌍 **Cultural Competency** | Global healthcare contexts |
+
+---
+
+## 📜 Attribution
+
+<div align="center">
+
+This Code of Conduct is adapted from the [**Contributor Covenant**](https://www.contributor-covenant.org), version 2.1
+
+**Healthcare-specific provisions inspired by**:
+- National Academy of Medicine AI Code of Conduct Framework
+- WHO Ethics and Governance of Artificial Intelligence for Health  
+- ICMR Ethical Guidelines for Application of AI in Biomedical Research and Healthcare
+
+</div>
+
+---
+
+<div align="center">
+
+## 📋 Document Information
+
+| Field | Value |
+|-------|-------|
+| **Last Updated** | September 25, 2025 |
+| **Version** | 2.1 (Healthcare AI Enhanced) |
+| **Language** | English |
+| **License** | CC BY 4.0 |
+
+</div>
+
+---
+
+<div align="center">
+
+### 📞 Contact Information
+
+**General Inquiries**  
+📧 [nayinicharithareddy18@gmail.com](mailto:nayinicharithareddy18@gmail.com)
+
+**Healthcare Ethics Concerns**  
+📧 [nayinicharithareddy18@gmail.com](mailto:nayinicharithareddy18@gmail.com)  
+📌 Subject: `URGENT HEALTH CONCERN`
+
+---
+
+⚡ **By contributing to this project, you agree to abide by this Code of Conduct and acknowledge the healthcare-specific responsibilities outlined herein.**
+
+[![Built with ❤️](https://img.shields.io/badge/Built%20with-%E2%9D%A4%EF%B8%8F-red.svg)](https://github.com/CharithaReddy18/AI-health-chatbot)
+[![For Healthcare](https://img.shields.io/badge/For-Healthcare%20🏥-blue.svg)](https://github.com/CharithaReddy18/AI-health-chatbot)
+[![Open Source](https://img.shields.io/badge/Open%20Source-%F0%9F%A4%9D-green.svg)](https://github.com/CharithaReddy18/AI-health-chatbot)
+
+</div>
