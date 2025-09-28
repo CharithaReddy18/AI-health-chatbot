@@ -9,3 +9,29 @@
 *{
   font-family: "Outfit", sans-serif;
 }
+
+
+/* Simple Thin Scrollbar for Entire Website */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #14b8a6;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d9488;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #14b8a6 #f1f5f9;
+}

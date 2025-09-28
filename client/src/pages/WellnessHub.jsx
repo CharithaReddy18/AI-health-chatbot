@@ -1,259 +1,265 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import BMICalculator from '../components/WellnessHubComponents/BMICalculator';
+import CalorieCalculator from '../components/WellnessHubComponents/CalorieCalculator';
+import HeartRateCalculator from '../components/WellnessHubComponents/HeartRateCalculator';
+import WaterIntakeCalculator from '../components/WellnessHubComponents/WaterIntakeCalculator';
+import SleepCalculator from '../components/WellnessHubComponents/SleepCalculator';
+import ProteinCalculator from '../components/WellnessHubComponents/ProteinCalculator';
+import MacroCalculator from '../components/WellnessHubComponents/MacroCalculator';
+import VO2MaxCalculator from '../components/WellnessHubComponents/VO2MaxCalculator';
+import BSACalculator from '../components/WellnessHubComponents/BSACalculator';
+import CaffeineCalculator from '../components/WellnessHubComponents/CaffeineCalculator';
+import OneRepMaxCalculator from '../components/WellnessHubComponents/OneRepMaxCalculator';
+import RunningPaceCalculator from '../components/WellnessHubComponents/RunningPaceCalculator';
+import BodyFatCalculator from '../components/WellnessHubComponents/BodyFatCalculator';
 
-// --- BMI Calculator Component ---
-const BMICalculator = () => {
-    const [height, setHeight] = useState(170);
-    const [weight, setWeight] = useState(70);
-    const [bmi, setBmi] = useState(24.2);
-    const [category, setCategory] = useState('Normal weight');
-
-    useEffect(() => {
-        if (height > 0 && weight > 0) {
-            const heightInMeters = height / 100;
-            const calculatedBmi = parseFloat((weight / (heightInMeters * heightInMeters)).toFixed(1));
-            setBmi(calculatedBmi);
-
-            if (calculatedBmi < 18.5) setCategory('Underweight');
-            else if (calculatedBmi >= 18.5 && calculatedBmi <= 24.9) setCategory('Normal weight');
-            else if (calculatedBmi >= 25 && calculatedBmi <= 29.9) setCategory('Overweight');
-            else setCategory('Obesity');
-        }
-    }, [height, weight]);
-
-    const getBmiRotation = () => {
-        // Scale BMI (10-40) to rotation angle (-90 to 90 degrees)
-        const clampedBmi = Math.max(10, Math.min(40, bmi));
-        return (clampedBmi - 10) / 30 * 180 - 90;
-    };
-    
-    const getBmiColor = () => {
-        if (category === 'Underweight') return 'text-yellow-400';
-        if (category === 'Normal weight') return 'text-green-400';
-        if (category === 'Overweight') return 'text-orange-400';
-        return 'text-red-500';
-    };
-
-    return (
-        <div className="relative bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
-            <h3 className="text-xl font-bold text-cyan-400">BMI Calculator</h3>
-            <div className="h-40 w-full flex items-center justify-center my-4">
-                <div className="relative w-48 h-24">
-                    <div className="absolute bottom-0 left-0 w-full h-full border-4 border-slate-700 rounded-t-full border-b-0"></div>
-                    <div className="absolute bottom-0 left-0 w-full h-full rounded-t-full overflow-hidden">
-                         <div className="absolute bottom-0 left-0 w-1/4 h-full bg-yellow-400/50"></div>
-                         <div className="absolute bottom-0 left-1/4 w-1/4 h-full bg-green-400/50"></div>
-                         <div className="absolute bottom-0 left-2/4 w-1/4 h-full bg-orange-400/50"></div>
-                         <div className="absolute bottom-0 left-3/4 w-1/4 h-full bg-red-500/50"></div>
-                    </div>
-                    <div className="absolute bottom-0 left-1/2 w-1 h-4 bg-white rounded-full transition-transform duration-500" style={{ transform: `translateX(-50%) rotate(${getBmiRotation()}deg) translateY(-5rem)`}}></div>
-                    <div className="absolute bottom-1 left-1/2 w-4 h-4 bg-white rounded-full -translate-x-1/2"></div>
-                </div>
-            </div>
-            <div className="text-center -mt-4">
-                <p className="text-5xl font-extrabold text-white">{bmi}</p>
-                <p className={`font-semibold ${getBmiColor()}`}>{category}</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4 mt-6">
-                <div>
-                    <label className="text-sm font-medium text-slate-400">Height: {height} cm</label>
-                    <input type="range" min="120" max="220" value={height} onChange={e => setHeight(e.target.value)} className="w-full mt-1 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"/>
-                </div>
-                <div>
-                    <label className="text-sm font-medium text-slate-400">Weight: {weight} kg</label>
-                    <input type="range" min="40" max="150" value={weight} onChange={e => setWeight(e.target.value)} className="w-full mt-1 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"/>
-                </div>
-            </div>
-        </div>
-    );
+// Animation variants
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+        },
+    },
 };
 
-// --- Daily Calorie Calculator ---
-const CalorieCalculator = () => {
-    const [age, setAge] = useState(30);
-    const [gender, setGender] = useState('male');
-    const [weight, setWeight] = useState(70);
-    const [height, setHeight] = useState(170);
-    const [activity, setActivity] = useState(1.55);
-    const [calories, setCalories] = useState(0);
-
-    useEffect(() => {
-        let bmr;
-        if (gender === 'male') {
-            bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
-        } else {
-            bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
-        }
-        setCalories((bmr * activity).toFixed(0));
-    }, [age, gender, weight, height, activity]);
-
-    return (
-        <div className="relative bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-xl overflow-hidden hover:border-green-500/50 transition-all duration-300">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent"></div>
-            <h3 className="text-xl font-bold text-green-400">Daily Calorie Needs</h3>
-             <div className="text-center my-6">
-                <p className="text-slate-400">Maintenance Calories</p>
-                <p className="text-6xl font-extrabold text-white">{calories}</p>
-                <p className="text-sm text-slate-500">kcal / day</p>
-            </div>
-            <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                    <div>
-                        <label className="text-sm font-medium text-slate-400">Age</label>
-                        <input type="number" value={age} onChange={e => setAge(e.target.value)} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md"/>
-                    </div>
-                    <div>
-                        <label className="text-sm font-medium text-slate-400">Gender</label>
-                        <select value={gender} onChange={e => setGender(e.target.value)} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="text-sm font-medium text-slate-400">Height (cm)</label>
-                        <input type="number" value={height} onChange={e => setHeight(e.target.value)} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md"/>
-                    </div>
-                    <div>
-                        <label className="text-sm font-medium text-slate-400">Weight (kg)</label>
-                        <input type="number" value={weight} onChange={e => setWeight(e.target.value)} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md"/>
-                    </div>
-                </div>
-                <div>
-                    <label className="text-sm font-medium text-slate-400">Activity Level</label>
-                    <select value={activity} onChange={e => setActivity(parseFloat(e.target.value))} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md">
-                        <option value={1.2}>Sedentary</option>
-                        <option value={1.375}>Lightly active</option>
-                        <option value={1.55}>Moderately active</option>
-                        <option value={1.725}>Very active</option>
-                        <option value={1.9}>Extra active</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// --- Heart Rate Zone Calculator ---
-const HeartRateCalculator = () => {
-    const [age, setAge] = useState(30);
-    const [zones, setZones] = useState({});
-
-    useEffect(() => {
-        const maxHr = 220 - age;
-        setZones({
-            max: `${maxHr} BPM`,
-            moderate: `${Math.round(maxHr * 0.5)} - ${Math.round(maxHr * 0.7)} BPM`,
-            cardio: `${Math.round(maxHr * 0.7)} - ${Math.round(maxHr * 0.85)} BPM`,
-        });
-    }, [age]);
-    
-    return (
-        <div className="relative bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-xl overflow-hidden hover:border-purple-500/50 transition-all duration-300">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
-            <h3 className="text-xl font-bold text-purple-400">Target Heart Rate Zones</h3>
-             <div className="mt-4">
-                <label className="text-sm font-medium text-slate-400">Your Age: {age}</label>
-                <input type="range" min="18" max="80" value={age} onChange={e => setAge(e.target.value)} className="w-full mt-1 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"/>
-            </div>
-            <div className="text-center my-4">
-                <p className="text-slate-400">Max Heart Rate</p>
-                <p className="text-4xl font-extrabold text-white">{zones.max}</p>
-            </div>
-            <div className="mt-4 space-y-3">
-                <div className="p-3 rounded-md bg-yellow-400/10 border border-yellow-400/30">
-                    <p className="font-semibold text-yellow-400">Moderate Intensity (50-70%)</p>
-                    <p className="font-bold text-white text-lg">{zones.moderate}</p>
-                </div>
-                 <div className="p-3 rounded-md bg-orange-400/10 border border-orange-400/30">
-                    <p className="font-semibold text-orange-400">Cardio / Vigorous (70-85%)</p>
-                    <p className="font-bold text-white text-lg">{zones.cardio}</p>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// --- Body Fat Calculator ---
-const BodyFatCalculator = () => {
-    const [gender, setGender] = useState('male');
-    const [height, setHeight] = useState(170);
-    const [waist, setWaist] = useState(80);
-    const [neck, setNeck] = useState(38);
-    const [hip, setHip] = useState(90); // Only for female
-    const [bodyFat, setBodyFat] = useState(0);
-
-    useEffect(() => {
-        let fat = 0;
-        if (gender === 'male' && height > 0 && waist > 0 && neck > 0) {
-            fat = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
-        } else if (gender === 'female' && height > 0 && waist > 0 && neck > 0 && hip > 0) {
-            fat = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.22100 * Math.log10(height)) - 450;
-        }
-        setBodyFat(fat > 0 ? fat.toFixed(1) : 0);
-    }, [gender, height, waist, neck, hip]);
-
-    return (
-        <div className="relative bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-xl overflow-hidden hover:border-pink-500/50 transition-all duration-300 lg:col-span-3">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500 to-transparent"></div>
-            <h3 className="text-xl font-bold text-pink-400">Body Fat Estimator (U.S. Navy Method)</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mt-4">
-                <div className="md:col-span-2 grid grid-cols-2 gap-4">
-                    <select value={gender} onChange={e => setGender(e.target.value)} className="col-span-2 w-full bg-slate-700 text-white p-2 border border-slate-600 rounded-md">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                    <div>
-                        <label className="text-sm font-medium text-slate-400">Height (cm)</label>
-                        <input type="number" value={height} onChange={e => setHeight(e.target.value)} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md"/>
-                    </div>
-                    <div>
-                        <label className="text-sm font-medium text-slate-400">Waist (cm)</label>
-                        <input type="number" value={waist} onChange={e => setWaist(e.target.value)} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md"/>
-                    </div>
-                    <div>
-                        <label className="text-sm font-medium text-slate-400">Neck (cm)</label>
-                        <input type="number" value={neck} onChange={e => setNeck(e.target.value)} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md"/>
-                    </div>
-                    {gender === 'female' && (
-                        <div>
-                            <label className="text-sm font-medium text-slate-400">Hip (cm)</label>
-                            <input type="number" value={hip} onChange={e => setHip(e.target.value)} className="w-full bg-slate-700 text-white mt-1 p-2 border border-slate-600 rounded-md"/>
-                        </div>
-                    )}
-                </div>
-                <div className="text-center">
-                    <p className="text-slate-400">Estimated Body Fat</p>
-                    <p className="text-6xl font-extrabold text-white">{bodyFat}%</p>
-                </div>
-            </div>
-        </div>
-    );
+const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: 'spring',
+            stiffness: 100,
+            damping: 12,
+        },
+    },
 };
 
 // --- Main Wellness Hub Page ---
 const WellnessHub = () => {
+    const headerRef = useRef(null);
+    const gridRef = useRef(null);
+    const headerInView = useInView(headerRef, { once: true, threshold: 0.5 });
+    const gridInView = useInView(gridRef, { once: true, threshold: 0.1 });
+
     return (
-        <div className="bg-slate-900 pt-20 min-h-screen">
-            {/* Page Header */}
-            <div className="border-b border-slate-800">
-                <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-                        Wellness Hub
-                    </h1>
-                    <p className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
-                        Interactive tools to help you understand and monitor key health metrics.
-                    </p>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50 text-slate-800 overflow-x-hidden">
+            {/* Medical-themed Floating Background Elements */}
+            <div className="fixed inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-r from-teal-100/40 to-emerald-100/40 rounded-full blur-2xl"></div>
+                <div className="absolute top-1/3 left-10 w-48 h-48 bg-gradient-to-r from-blue-100/30 to-cyan-100/30 rounded-full blur-xl"></div>
+                <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-indigo-100/25 to-purple-100/25 rounded-full blur-3xl"></div>
+                
+                {/* Medical Cross Pattern */}
+                <div className="absolute inset-0 opacity-5">
+                    <div className="absolute top-1/4 left-1/4 w-6 h-20 bg-teal-600 rounded-full"></div>
+                    <div className="absolute top-1/3 left-1/4 w-20 h-6 bg-teal-600 rounded-full"></div>
+                    <div className="absolute bottom-1/3 right-1/3 w-4 h-16 bg-emerald-600 rounded-full"></div>
+                    <div className="absolute bottom-1/4 right-1/3 w-16 h-4 bg-emerald-600 rounded-full"></div>
                 </div>
             </div>
 
-            {/* Calculators Grid */}
-            <div className="max-w-7xl mx-auto py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
-                    <BMICalculator />
-                    <CalorieCalculator />
-                    <HeartRateCalculator />
-                    <BodyFatCalculator />
+            {/* Hero Header Section */}
+            <motion.header
+                ref={headerRef}
+                initial={{ opacity: 0, y: 30 }}
+                animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="relative z-10 pt-16 sm:pt-24 pb-12 sm:pb-20 px-4 sm:px-6"
+            >
+                <div className="max-w-6xl mx-auto text-center">
+                    {/* Status Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-teal-100 rounded-full mb-6"
+                    >
+                        <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
+                        <span className="text-sm font-medium text-teal-700">Advanced Health Analytics</span>
+                    </motion.div>
+                    
+                    {/* Main Title */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-tight text-slate-800"
+                    >
+                        Advanced Wellness
+                        <br />
+                        <span className="bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                            Calculation Hub
+                        </span>
+                    </motion.h1>
+                    
+                    {/* Subtitle */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light px-4"
+                    >
+                        Comprehensive collection of scientifically-backed health calculators and wellness tools 
+                        to help you monitor, understand, and optimize your health metrics with medical precision.
+                    </motion.p>
+
+                    {/* Feature Pills */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.7 }}
+                        className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8"
+                    >
+                        {[
+                            { icon: '📊', text: 'Real-time Results' },
+                            { icon: '🧬', text: 'Scientific Formulas' },
+                            { icon: '⚕️', text: 'Medical Grade' },
+                            { icon: '📱', text: 'Mobile Friendly' }
+                        ].map((feature, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={headerInView ? { opacity: 1, scale: 1 } : {}}
+                                transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                                className="flex items-center gap-2 px-4 py-2 bg-white/70 backdrop-blur-sm border border-white/80 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                            >
+                                <span className="text-lg">{feature.icon}</span>
+                                <span className="text-sm font-medium text-slate-700">{feature.text}</span>
+                            </motion.div>
+                        ))}
+                    </motion.div>
                 </div>
+            </motion.header>
+
+            {/* Calculators Grid Section */}
+            <div className="relative z-10 max-w-7xl mx-auto py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
+                <motion.div
+                    ref={gridRef}
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={gridInView ? "visible" : "hidden"}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 auto-rows-max"
+                >
+                    <motion.div variants={itemVariants}><BMICalculator /></motion.div>
+                    <motion.div variants={itemVariants}><CalorieCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><HeartRateCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><WaterIntakeCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><SleepCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><ProteinCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><MacroCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><VO2MaxCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><BSACalculator /></motion.div>
+                    <motion.div variants={itemVariants}><CaffeineCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><OneRepMaxCalculator /></motion.div>
+                    <motion.div variants={itemVariants}><RunningPaceCalculator /></motion.div>
+                    <motion.div variants={itemVariants} className="col-span-full lg:col-span-3 xl:col-span-4">
+                        <BodyFatCalculator />
+                    </motion.div>
+                </motion.div>
+            </div>
+
+            {/* Medical Disclaimer Footer */}
+            <div className="relative z-10 bg-gradient-to-r from-slate-100 to-blue-100 border-t border-slate-200">
+                <div className="max-w-7xl mx-auto py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-5xl mx-auto">
+                        {/* Warning Card */}
+                        <div className="bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-8">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-xl flex items-center justify-center text-white text-2xl flex-shrink-0">
+                                        ⚠️
+                                    </div>
+                                    <h3 className="text-xl sm:text-2xl font-bold text-red-700">Medical Disclaimer</h3>
+                                </div>
+                                
+                                {/* Evidence Badge */}
+                                <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 rounded-full">
+                                    <span className="text-xs font-medium text-blue-700">Educational Purpose Only</span>
+                                </div>
+                            </div>
+                            
+                            <p className="text-slate-700 leading-relaxed text-sm sm:text-base">
+                                <strong className="text-red-600">Important Notice:</strong> These health calculators are designed for 
+                                educational and informational purposes only. They utilize established medical formulas but should never 
+                                replace professional medical advice, diagnosis, or treatment. Always consult qualified healthcare 
+                                professionals for personalized medical guidance, especially before making significant changes to your 
+                                diet, exercise routine, or health management plan. Individual results may vary based on personal health 
+                                conditions, genetics, and other factors.
+                            </p>
+                            
+                            {/* Trust Indicators */}
+                            <div className="flex flex-wrap items-center gap-6 mt-6 pt-6 border-t border-red-200">
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <span className="text-sm text-slate-600 font-medium">Evidence-Based Formulas</span>
+                                </div>
+                                
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                    <span className="text-sm text-slate-600 font-medium">Privacy Protected</span>
+                                </div>
+                                
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span className="text-sm text-slate-600 font-medium">Medically Reviewed</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Footer Credits */}
+                        {/* <div className="text-center">
+                            <p className="text-slate-500 text-sm">
+                                Built with ❤️ for better health • © 2025 MediCore Wellness Hub • 
+                                <span className="text-teal-600 font-medium"> Empowering Health Through Technology</span>
+                            </p>
+                        </div> */}
+                    </div>
+                </div>
+            </div>
+
+            {/* Floating Health Icons */}
+            <div className="absolute inset-0 z-5 pointer-events-none overflow-hidden">
+                {[
+                    { icon: '🫀', top: '15%', left: '5%', delay: 0 },
+                    { icon: '💊', top: '25%', right: '8%', delay: 2 },
+                    { icon: '🩺', bottom: '30%', left: '3%', delay: 4 },
+                    { icon: '⚕️', bottom: '20%', right: '5%', delay: 1 },
+                    { icon: '🧬', top: '60%', left: '7%', delay: 3 }
+                ].map((item, index) => (
+                    <motion.div
+                        key={index}
+                        animate={{
+                            y: [0, -15, 0],
+                            opacity: [0.1, 0.3, 0.1],
+                            rotate: [0, 5, 0]
+                        }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            delay: item.delay,
+                            ease: "easeInOut"
+                        }}
+                        className="absolute text-2xl sm:text-3xl opacity-10"
+                        style={{
+                            top: item.top,
+                            bottom: item.bottom,
+                            left: item.left,
+                            right: item.right
+                        }}
+                    >
+                        {item.icon}
+                    </motion.div>
+                ))}
             </div>
         </div>
     );
