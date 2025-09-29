@@ -1,0 +1,23 @@
+{
+  "session_id": "e7d4be51-ca37-401f-96c1-f0afd67e0202",
+  "messages": [
+    {
+      "role": "user",
+      "content": "I am feeling bad and having friction in the throat and some cough with constant body pain\nEspecially in head it is paining to much from morning",
+      "timestamp": "2025-09-29T14:42:48.377430",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "I understand we've been discussing your health concerns, and I apologize, but I'm experiencing technical difficulties with your question about \"I am feeling bad and having friction in the throat and some cough with constant body pain\nEspecially in head it is paining to much from morning\".\n\n**For your health needs:**\n- **Urgent concerns:** Contact your healthcare provider immediately\n- **Emergencies:** Call 911 or visit your nearest emergency room\n- **General questions:** Try rephrasing your question or consult trusted medical websites\n\n**Remember:** I provide educational health information only and cannot replace professional medical advice.\n\n*Technical note: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.*",
+      "timestamp": "2025-09-29T14:42:52.750328",
+      "metadata": {}
+    }
+  ],
+  "created_at": "2025-09-29T14:42:48.321878",
+  "updated_at": "2025-09-29T14:42:52.750332",
+  "metadata": {
+    "version": "1.0",
+    "source": "medibot"
+  }
+}
