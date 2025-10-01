@@ -14,6 +14,8 @@ import AirQualityForecaster from "./pages/AirQualityForecaster";
 import ClinicalTrialFinder from "./pages/ClinicalTrialFinder";
 import Hub from "./pages/Hub";
 import FAQ from "./pages/FAQ";
+import EmergencyProtocols from './pages/EmergencyProtocols'
+
 
 const App = () => {
   useEffect(() => {
@@ -45,6 +47,8 @@ const App = () => {
 
           <Route path="/hub" element={<Hub />} />
           <Route path="/faq" element={<FAQ />} />
+
+          <Route path="/emer-pro" element={<EmergencyProtocols />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Route>

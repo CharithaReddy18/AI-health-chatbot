@@ -66,7 +66,7 @@ const Footer = () => {
                 { name: "Health Library", href: "/library" },
                 { name: "Medical News", href: "/news" },
                 { name: "Wellness Tips", href: "/wellness" },
-                { name: "Emergency Guide", href: "/emergency" }
+                { name: "Emergency Guide", href: "/emer-pro" }
             ]
         },
         {
