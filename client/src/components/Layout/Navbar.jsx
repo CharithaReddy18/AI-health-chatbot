@@ -4,12 +4,15 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [currentPath, setCurrentPath] = useState('/');
 
-    // Update current path
+    // Update current path (Using window.location is fine for a single file component)
     useEffect(() => {
-        setCurrentPath(window.location.pathname);
+        // Fallback for environments where window/pathname might not be immediately available
+        if (typeof window !== 'undefined') {
+            setCurrentPath(window.location.pathname);
+        }
     }, []);
 
-    // Clean, professional SVG icons
+    // --- Icon Components (unchanged) ---
     const HomeIcon = () => (
         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="m3 12 2-2m0 0 7-7 7 7M5 10v10a1 1 0 0 0 1 1h3m10-11 2 2m-2-2v10a1 1 0 0 1-1 1h-3m-6 0a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1m-6 0h6" />
@@ -70,17 +73,31 @@ const Navbar = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
         </svg>
     );
+    // --- End Icon Components ---
 
-    // Professional NavLink component
+    // Professional NavLink component (Revised for Green Theme and Consistency)
     const NavLink = ({ href, children, isCurrent, onClick }) => (
         <a 
             href={href} 
             onClick={onClick}
-            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                isCurrent 
-                    ? 'bg-red-50 text-red-700 border border-red-200' 
-                    : 'text-slate-600 hover:text-red-600 hover:bg-red-50'
-            }`}
+            className={`
+                // Base structure for mobile (block/full-width) and desktop (inline-flex/auto-width)
+                block lg:inline-flex w-full lg:w-auto items-center justify-start lg:justify-center
+                px-3 py-2 rounded-lg text-sm font-medium 
+                
+                // Smooth transition for all properties (color, background, shadow)
+                transition-all duration-300
+                
+                // Consistency fix: Always set a transparent border to reserve space and prevent vertical layout shift when active
+                border border-transparent
+
+                ${isCurrent 
+                    // Active State: Green Theme
+                    ? 'bg-green-50 text-green-700 border-green-300' 
+                    // Inactive State: Green Theme, smooth hover, gentle shadow
+                    : 'text-slate-600 hover:text-green-700 hover:bg-green-50 hover:shadow-sm'
+                }
+            `}
         >
             <span className="flex items-center">
                 {children}
@@ -89,27 +106,29 @@ const Navbar = () => {
     );
 
     return (
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-200 shadow-sm">
+        // The header must be relative for the absolute mobile menu positioning to work inside it
+        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-200 shadow-sm relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Main Bar - Fixed Height */}
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo Section */}
+                    {/* Logo Section - Green Theme */}
                     <a href="/" className="flex items-center space-x-3 text-slate-900 hover:text-slate-700 transition-colors">
-                        {/* Medical Plus Icon */}
-                        <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center shadow-sm">
+                        {/* Medical Plus Icon - Green Theme */}
+                        <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center shadow-sm">
                             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                         </div>
                         
-                        {/* Brand Text - Always visible including mobile */}
+                        {/* Brand Text */}
                         <div className="flex flex-col">
                             <span className="text-xl font-bold text-slate-900">MediBot</span>
                             <span className="text-xs text-slate-500 -mt-1 hidden sm:block">AI Health Assistant</span>
                         </div>
                     </a>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center space-x-1">
+                    {/* Desktop Navigation (Used lg:space-x-2 for better spacing) */}
+                    <nav className="hidden lg:flex items-center space-x-2">
                         <NavLink href="/" isCurrent={currentPath === '/'}>
                             <HomeIcon /> Home
                         </NavLink>
@@ -142,10 +161,10 @@ const Navbar = () => {
                         </NavLink>
                     </nav>
 
-                    {/* Mobile Menu Button */}
+                    {/* Mobile Menu Button - Green Theme */}
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-red-600 hover:bg-red-50 transition-colors"
+                        className="lg:hidden p-2 rounded-lg text-slate-600 hover:text-green-600 hover:bg-green-50 transition-colors"
                         aria-label="Toggle menu"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,85 +176,94 @@ const Navbar = () => {
                         </svg>
                     </button>
                 </div>
-
-                {/* Mobile Navigation Menu */}
-                {isMenuOpen && (
-                    <div className="lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-lg">
-                        <div className="py-4 space-y-1">
-                            <NavLink 
-                                href="/" 
-                                isCurrent={currentPath === '/'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <HomeIcon /> Home
-                            </NavLink>
-                            <NavLink 
-                                href="/hub" 
-                                isCurrent={currentPath === '/hub'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <HealthIcon /> Health Hub
-                            </NavLink>
-                            <NavLink 
-                                href="/symptom-checker" 
-                                isCurrent={currentPath === '/symptom-checker'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <StethoscopeIcon /> Symptom Checker
-                            </NavLink>
-                            <NavLink 
-                                href="/wellness-hub" 
-                                isCurrent={currentPath === '/wellness-hub'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <CalculatorIcon /> Wellness Hub
-                            </NavLink>
-                            <NavLink 
-                                href="/doctor-recommender" 
-                                isCurrent={currentPath === '/doctor-recommender'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <UserGroupIcon /> Find Doctors
-                            </NavLink>
-                            <NavLink 
-                                href="/human-body-explorer" 
-                                isCurrent={currentPath === '/human-body-explorer'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <BodyIcon /> Body Explorer
-                            </NavLink>
-                            <NavLink 
-                                href="/air-quality-forecaster" 
-                                isCurrent={currentPath === '/air-quality-forecaster'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <CloudIcon /> Air Quality
-                            </NavLink>
-                            <NavLink 
-                                href="/tech-stack" 
-                                isCurrent={currentPath === '/tech-stack'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <CodeIcon /> Tech Stack
-                            </NavLink>
-                            <NavLink 
-                                href="/roadmap" 
-                                isCurrent={currentPath === '/roadmap'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <MapIcon /> Roadmap
-                            </NavLink>
-                            <NavLink 
-                                href="/contribute" 
-                                isCurrent={currentPath === '/contribute'} 
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <HeartIcon /> Contribute
-                            </NavLink>
-                        </div>
-                    </div>
-                )}
             </div>
+
+            {/* Mobile Navigation Menu - ABSOLUTE POSITIONED to fix shifting issue */}
+            {isMenuOpen && (
+                <div 
+                    className="
+                        lg:hidden 
+                        absolute top-16 left-0 right-0 z-40 // Positioned below the main bar (h-16)
+                        bg-white shadow-xl 
+                        max-h-[80vh] overflow-y-auto // Allows scrolling if links exceed screen height
+                        border-t border-slate-200
+                    "
+                >
+                    <div className="py-4 space-y-1 px-4">
+                        {/* NavLinks now take full width and show green hover cleanly */}
+                        <NavLink 
+                            href="/" 
+                            isCurrent={currentPath === '/'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <HomeIcon /> Home
+                        </NavLink>
+                        <NavLink 
+                            href="/hub" 
+                            isCurrent={currentPath === '/hub'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <HealthIcon /> Health Hub
+                        </NavLink>
+                        <NavLink 
+                            href="/symptom-checker" 
+                            isCurrent={currentPath === '/symptom-checker'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <StethoscopeIcon /> Symptom Checker
+                        </NavLink>
+                        <NavLink 
+                            href="/wellness-hub" 
+                            isCurrent={currentPath === '/wellness-hub'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <CalculatorIcon /> Wellness Hub
+                        </NavLink>
+                        <NavLink 
+                            href="/doctor-recommender" 
+                            isCurrent={currentPath === '/doctor-recommender'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <UserGroupIcon /> Find Doctors
+                        </NavLink>
+                        <NavLink 
+                            href="/human-body-explorer" 
+                            isCurrent={currentPath === '/human-body-explorer'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <BodyIcon /> Body Explorer
+                        </NavLink>
+                        <NavLink 
+                            href="/air-quality-forecaster" 
+                            isCurrent={currentPath === '/air-quality-forecaster'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <CloudIcon /> Air Quality
+                        </NavLink>
+                        <NavLink 
+                            href="/tech-stack" 
+                            isCurrent={currentPath === '/tech-stack'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <CodeIcon /> Tech Stack
+                        </NavLink>
+                        <NavLink 
+                            href="/roadmap" 
+                            isCurrent={currentPath === '/roadmap'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <MapIcon /> Roadmap
+                        </NavLink>
+                        <NavLink 
+                            href="/contribute" 
+                            isCurrent={currentPath === '/contribute'} 
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <HeartIcon /> Contribute
+                        </NavLink>
+                    </div>
+                </div>
+            )}
         </header>
     );
 };
