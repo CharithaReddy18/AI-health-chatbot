@@ -13,6 +13,7 @@ import HumanBodyExplorer from './pages/HumanBodyExplorer'
 import AirQualityForecaster from './pages/AirQualityForecaster'
 import ClinicalTrialFinder from './pages/ClinicalTrialFinder'
 import Hub from './pages/Hub'
+import EmergencyProtocols from './pages/EmergencyProtocols'
 
 
 const App = () => {
@@ -32,6 +33,8 @@ const App = () => {
           <Route path="/clinical-trial-finder" element={<ClinicalTrialFinder />} />
 
           <Route path="/hub" element={<Hub />} />
+
+          <Route path="/emer-pro" element={<EmergencyProtocols />} />
 
           <Route path="*" element={<NotFoundPage/>} />
         </Route>
