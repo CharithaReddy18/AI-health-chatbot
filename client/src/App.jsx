@@ -1,25 +1,31 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Landing from './pages/Landing'
-import MainLayout from './components/Layout/MainLayout'
-import Contribute from './pages/Contribute'
-import TechStack from './pages/TechStack'
-import DoctorRecommender from './pages/DoctorRecommender'
-import SymptomCheckerPage from './pages/SymptomCheckerPage'
-import NotFoundPage from './pages/NotFoundPage'
-import Roadmap from './pages/RoadMap'
-import WellnessHub from './pages/WellnessHub'
-import HumanBodyExplorer from './pages/HumanBodyExplorer'
-import AirQualityForecaster from './pages/AirQualityForecaster'
-import ClinicalTrialFinder from './pages/ClinicalTrialFinder'
-import Hub from './pages/Hub'
-
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Landing from "./pages/Landing";
+import MainLayout from "./components/Layout/MainLayout";
+import Contribute from "./pages/Contribute";
+import TechStack from "./pages/TechStack";
+import DoctorRecommender from "./pages/DoctorRecommender";
+import SymptomCheckerPage from "./pages/SymptomCheckerPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import Roadmap from "./pages/RoadMap";
+import WellnessHub from "./pages/WellnessHub";
+import HumanBodyExplorer from "./pages/HumanBodyExplorer";
+import AirQualityForecaster from "./pages/AirQualityForecaster";
+import ClinicalTrialFinder from "./pages/ClinicalTrialFinder";
+import Hub from "./pages/Hub";
+import FAQ from "./pages/FAQ";
 
 const App = () => {
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
   return (
     <div>
       <Routes>
-        <Route element={<MainLayout />} >
+        <Route element={<MainLayout />}>
           <Route path="/" element={<Landing />} />
           <Route path="/contribute" element={<Contribute />} />
           <Route path="/tech-stack" element={<TechStack />} />
@@ -28,16 +34,23 @@ const App = () => {
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/wellness-hub" element={<WellnessHub />} />
           <Route path="/human-body-explorer" element={<HumanBodyExplorer />} />
-          <Route path="/air-quality-forecaster" element={<AirQualityForecaster />} />
-          <Route path="/clinical-trial-finder" element={<ClinicalTrialFinder />} />
+          <Route
+            path="/air-quality-forecaster"
+            element={<AirQualityForecaster />}
+          />
+          <Route
+            path="/clinical-trial-finder"
+            element={<ClinicalTrialFinder />}
+          />
 
           <Route path="/hub" element={<Hub />} />
+          <Route path="/faq" element={<FAQ />} />
 
-          <Route path="*" element={<NotFoundPage/>} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

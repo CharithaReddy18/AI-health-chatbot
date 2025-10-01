@@ -74,7 +74,7 @@ const Footer = () => {
             links: [
                 { name: "How It Works", href: "/how-it-works" },
                 { name: "AI Technology", href: "/technology" },
-                { name: "Security", href: "/security" },
+                { name: "FAQ", href: "/faq" },
                 { name: "API Documentation", href: "/docs" }
             ]
         },
