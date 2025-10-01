@@ -36,7 +36,7 @@ const App = () => {
 
           <Route path="/emer-pro" element={<EmergencyProtocols />} />
 
-          <Route path="*" element={<NotFoundPage/>} />
+          <Route path="*" element={<NotFoundPage/>} /> 
         </Route>
       </Routes>
     </div>
