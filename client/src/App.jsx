@@ -15,6 +15,7 @@ import ClinicalTrialFinder from "./pages/ClinicalTrialFinder";
 import Hub from "./pages/Hub";
 import FAQ from "./pages/FAQ";
 import EmergencyProtocols from './pages/EmergencyProtocols'
+import AboutUs from "./pages/AboutUs";
 
 
 const App = () => {
@@ -36,17 +37,12 @@ const App = () => {
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/wellness-hub" element={<WellnessHub />} />
           <Route path="/human-body-explorer" element={<HumanBodyExplorer />} />
-          <Route
-            path="/air-quality-forecaster"
-            element={<AirQualityForecaster />}
-          />
-          <Route
-            path="/clinical-trial-finder"
-            element={<ClinicalTrialFinder />}
-          />
+          <Route path="/air-quality-forecaster" element={<AirQualityForecaster />} />
+          <Route path="/clinical-trial-finder" element={<ClinicalTrialFinder />} />
 
           <Route path="/hub" element={<Hub />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/about-us" element={<AboutUs />} />
 
           <Route path="/emer-pro" element={<EmergencyProtocols />} />
 
