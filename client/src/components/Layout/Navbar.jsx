@@ -77,6 +77,24 @@ const Navbar = () => {
     const QuestionMarkIcon = () => (
         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h9m-9 3.75h9m-13.5 3.75h9M12 12v3M9 12h.008v.008H9V12z" /></svg>
     );
+    
+    // NEW ICONS
+    const GitBranchIcon = () => (
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15 15l-6 6m0 0V9m0 12h12m-6-6h6m-12 0h-3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3m0 0v3m0 12v-3" /></svg>
+    );
+
+    const ScaleIcon = () => (
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 14 2.5 10.5M15 14 21.5 10.5M12 4.5v15M10.5 20.25h3M21 14H3" /></svg>
+    );
+
+    const LockClosedIcon = () => (
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V8.25a4.5 4.5 0 1 0-9 0v2.25m9 0H21a1.5 1.5 0 0 1 1.5 1.5v6.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5v-6.75a1.5 1.5 0 0 1 1.5-1.5h12.75z" /></svg>
+    );
+
+    const TargetIcon = () => (
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0z" /></svg>
+    );
+    // END NEW ICONS
 
     const ChevronDownIcon = ({ isOpen }) => (
         <svg
@@ -89,10 +107,12 @@ const Navbar = () => {
 
 
     // Professional NavLink component (Used for all individual links)
-    const NavLink = ({ href, children, isCurrent, onClick, isSubLink = false }) => (
+    const NavLink = ({ href, children, isCurrent, onClick, isSubLink = false, isExternal = false }) => (
         <a 
             href={href} 
             onClick={onClick}
+            target={isExternal ? "_blank" : "_self"}
+            rel={isExternal ? "noopener noreferrer" : undefined}
             className={`
                 // Base structure for mobile (block/full-width) and desktop (inline-flex/auto-width)
                 block w-full items-center justify-start
@@ -154,6 +174,7 @@ const Navbar = () => {
                                     isCurrent={currentPath === link.href}
                                     onClick={() => setActiveDropdown(null)}
                                     isSubLink={true}
+                                    isExternal={link.isExternal}
                                 >
                                     {link.icon} {link.label}
                                 </NavLink>
@@ -203,6 +224,7 @@ const Navbar = () => {
                                 isCurrent={currentPath === link.href}
                                 onClick={() => setIsMenuOpen(false)}
                                 isSubLink={true}
+                                isExternal={link.isExternal}
                             >
                                 {link.icon} {link.label}
                             </NavLink>
@@ -240,8 +262,20 @@ const Navbar = () => {
             title: "Project & Community",
             icon: BookOpenIcon,
             links: [
+                // NEW: Teams & Mission
+                { href: '/team', label: 'Teams', icon: <UsersIcon /> },
+                { href: '/mission', label: 'Mission', icon: <TargetIcon /> },
+                
+                // Existing
                 { href: '/about-us', label: 'About Us', icon: <UsersIcon /> },
                 { href: '/contact-us', label: 'Contact Us', icon: <EnvelopeIcon /> },
+                
+                // NEW: Legal and External
+                { href: '/privacy', label: 'Privacy Policy', icon: <LockClosedIcon /> },
+                { href: '/terms', label: 'Terms of Service', icon: <ScaleIcon /> },
+                { href: 'https://github.com/CharithaReddy18/AI-health-chatbot', label: 'GitHub Repository', icon: <GitBranchIcon />, isExternal: true },
+                
+                // Existing
                 { href: '/documentation', label: 'Documentation', icon: <BookOpenIcon /> },
                 { href: '/tech-stack', label: 'Tech Stack', icon: <CodeIcon /> },
                 { href: '/roadmap', label: 'Roadmap', icon: <MapIcon /> },
